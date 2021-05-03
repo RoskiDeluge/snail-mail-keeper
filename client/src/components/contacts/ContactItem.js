@@ -28,14 +28,12 @@ const ContactItem = ({ contact }) => {
         </span>
       </h3>
       <ul className="list">
-        {street && (
-          <li>
-            <i className="fas fa-home" /> {street}
-          </li>
-        )}
-        {city && <li>{city}</li>}
-        {state && <li>{state}</li>}
-        {zipcode && <li>{zipcode}</li>}
+        <p>{street && <span>{street}</span>}</p>
+
+        <p>
+          {city && <span>{city}</span>} {state && <span>{state}</span>}{" "}
+          {zipcode && <span>{zipcode}</span>}
+        </p>
       </ul>
       <p>
         <button
