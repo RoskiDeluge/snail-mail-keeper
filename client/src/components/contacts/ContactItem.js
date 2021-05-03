@@ -29,7 +29,6 @@ const ContactItem = ({ contact }) => {
       </h3>
       <ul className="list">
         <p>{street && <span>{street}</span>}</p>
-
         <p>
           {city && <span>{city}</span>} {state && <span>{state}</span>}{" "}
           {zipcode && <span>{zipcode}</span>}
