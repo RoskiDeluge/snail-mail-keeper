@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import ContactContext from '../../context/contact/contactContext';
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
+import ContactContext from "../../context/contact/contactContext";
 
 const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
-  const { _id, name, email, phone, type } = contact;
+  const { _id, name, street, city, state, zipcode, type } = contact;
 
   const onDelete = () => {
     deleteContact(_id);
@@ -14,39 +14,37 @@ const ContactItem = ({ contact }) => {
   };
 
   return (
-    <div className='card bg-light'>
-      <h3 className='text-primary text-left'>
-        {name}{' '}
+    <div className="card bg-light">
+      <h3 className="text-primary text-left">
+        {name}{" "}
         <span
-          style={{ float: 'right' }}
+          style={{ float: "right" }}
           className={
-            'badge ' +
-            (type === 'professional' ? 'badge-success' : 'badge-primary')
+            "badge " +
+            (type === "professional" ? "badge-success" : "badge-primary")
           }
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
         </span>
       </h3>
-      <ul className='list'>
-        {email && (
+      <ul className="list">
+        {street && (
           <li>
-            <i className='fas fa-envelope-open' /> {email}
+            <i className="fas fa-home" /> {street}
           </li>
         )}
-        {phone && (
-          <li>
-            <i className='fas fa-phone' /> {phone}
-          </li>
-        )}
+        {city && <li>{city}</li>}
+        {state && <li>{state}</li>}
+        {zipcode && <li>{zipcode}</li>}
       </ul>
       <p>
         <button
-          className='btn btn-dark btn-sm'
+          className="btn btn-dark btn-sm"
           onClick={() => setCurrent(contact)}
         >
           Edit
         </button>
-        <button className='btn btn-danger btn-sm' onClick={onDelete}>
+        <button className="btn btn-danger btn-sm" onClick={onDelete}>
           Delete
         </button>
       </p>
@@ -55,7 +53,7 @@ const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
 };
 
 export default ContactItem;
