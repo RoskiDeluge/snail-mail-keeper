@@ -1,16 +1,23 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import ContactContext from "../../context/contact/contactContext";
 
-const ContactItem = ({ contact }) => {
+const ContactItem = ({ contact, props }) => {
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
   const { _id, name, street, city, state, zipcode, type } = contact;
 
+  const history = useHistory();
+
   const onDelete = () => {
-    deleteContact(_id);
-    clearCurrent();
+    if (window.confirm(`Are you sure you want to delete ${name}'s address?`)) {
+      deleteContact(_id);
+      clearCurrent();
+    } else {
+      history.push("/");
+    }
   };
 
   return (
