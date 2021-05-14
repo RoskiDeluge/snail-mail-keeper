@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import ContactContext from "../../context/contact/contactContext";
 
-const ContactForm = () => {
+const AddContactForm = () => {
   const contactContext = useContext(ContactContext);
 
   const { addContact, updateContact, clearCurrent, current } = contactContext;
@@ -129,4 +129,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default AddContactForm;

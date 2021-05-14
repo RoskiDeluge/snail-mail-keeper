@@ -1,6 +1,6 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
 import ContactContext from "../../context/contact/contactContext";
 
@@ -10,6 +10,8 @@ const Navbar = ({ title, icon }) => {
 
   const { isAuthenticated, logout, user, loadUser } = authContext;
   const { clearContacts } = contactContext;
+
+  const history = useHistory();
 
   useEffect(() => {
     loadUser();
@@ -21,11 +23,16 @@ const Navbar = ({ title, icon }) => {
     clearContacts();
   };
 
+  const onAdd = () => {
+    clearContacts();
+    history.push("/addcontact");
+  };
+
   const authLinks = (
     <Fragment>
-      <button className="btn btn-danger">
-        <Link to="/addcontact">Add Contact</Link>
-      </button>
+      <div className="btn btn-danger">
+        <a onClick={onAdd}>Add Contact</a>
+      </div>
       <li>Hello {user && user.name}</li>
       <li>
         <a onClick={onLogout} href="#!">
