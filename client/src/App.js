@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import TagManager from 'react-gtm-module'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Home from './components/pages/Home';
@@ -13,12 +12,6 @@ import ContactState from './context/contact/ContactState';
 import AuthState from './context/auth/AuthState';
 import AlertState from './context/alert/AlertState';
 import './App.css';
-
-const tagManagerArgs = {
-  gtmId: 'GTM-5SLZ4R2'
-}
-
-TagManager.initialize(tagManagerArgs)
 
 const App = () => {
   return (
