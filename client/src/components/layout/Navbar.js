@@ -66,7 +66,7 @@ Navbar.propTypes = {
 
 Navbar.defaultProps = {
   title: "Snail Mail Keeper",
-  icon: "fas fa-home",
+  icon: "fas fa-envelope",
 };
 
 export default Navbar;

@@ -1,19 +1,14 @@
-import React from 'react';
-import Contacts from '../contacts/Contacts';
-import ContactForm from '../contacts/ContactForm';
-import ContactFilter from '../contacts/ContactFilter';
+import React from "react";
 
 const Home = () => {
   return (
-    <div className='grid-2'>
-      <div>
-        <ContactForm />
-      </div>
-      <div>
-        <ContactFilter />
-        <Contacts />
-      </div>
-    </div>
+    <>
+      <h1>Snail Mail Keeper</h1>
+      <h2>
+        Snail Mail Keeper is a simple application that keeps track of your snail
+        mail.
+      </h2>
+    </>
   );
 };
 
