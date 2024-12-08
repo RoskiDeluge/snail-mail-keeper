@@ -1,6 +1,6 @@
 # Snail Mail Keeper
 
-Full Stack app to store your snail mail addresses. 
+An app to manage your snail mail addresses and .VCF files.
 
 
 
