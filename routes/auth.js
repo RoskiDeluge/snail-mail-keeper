@@ -5,8 +5,15 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 const auth = require("../middleware/auth");
 const { check, validationResult } = require("express-validator");
+const rateLimit = require("express-rate-limit");
 
 const User = require("../models/User");
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // 5 attempts per window
+  message: { msg: "Too many login attempts, please try again later" },
+});
 
 // @route     GET api/auth
 // @desc      Get logged in user
@@ -26,6 +33,7 @@ router.get("/", auth, async (req, res) => {
 // @access    Public
 router.post(
   "/",
+  loginLimiter,
   [
     check("email", "Please include a valid email").isEmail(),
     check("password", "Password is required").exists(),
@@ -61,7 +69,7 @@ router.post(
         payload,
         config.get("jwtSecret"),
         {
-          expiresIn: 360000,
+          expiresIn: 3600,
         },
         (err, token) => {
           if (err) throw err;
