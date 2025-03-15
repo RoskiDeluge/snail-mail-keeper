@@ -7,6 +7,7 @@
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
   --success-color: #28a745;
+  --free-color: #f07335;
 }
 
 * {
@@ -246,6 +247,15 @@ img {
   background: var(--light-color);
   color: #333;
 }
+
+.btn-free,
+.bg-free,
+.badge-free,
+.alert-free {
+  background: var(--free-color);
+  color: #fff;
+}
+
 
 .btn-dark,
 .bg-dark,

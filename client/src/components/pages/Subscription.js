@@ -1,75 +1,91 @@
-import React, { useContext, useEffect, useState } from "react";
-import SubscriptionContext from "../../context/subscription/SubscriptionContext";
+import React, { useState, useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import AuthContext from "../../context/auth/authContext";
 import Spinner from "../layout/Spinner";
-import { useNavigate } from "react-router-dom";
 
 const Subscription = () => {
-  const subscriptionContext = useContext(SubscriptionContext);
-  const {
-    subscriptionStatus,
-    message,
-    loading,
-    error,
-    getSubscription,
-    upgradeSubscription,
-  } = subscriptionContext;
+  const authContext = useContext(AuthContext);
+  const { user } = authContext;
 
+  const history = useHistory();
+  const [subscription, setSubscription] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [upgrading, setUpgrading] = useState(false);
-  const navigate = useNavigate();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getSubscription();
-    // eslint-disable-next-line
+    getSubscriptionInfo();
   }, []);
 
-  const onUpgrade = async () => {
+  const getSubscriptionInfo = async () => {
+    try {
+      const res = await axios.get("/api/subscription");
+      setSubscription(res.data);
+      setLoading(false);
+    } catch (err) {
+      setError("Failed to load subscription information");
+      setLoading(false);
+    }
+  };
+
+  /* Commented out upgradeSubscription function
+  const upgradeSubscription = async () => {
     try {
       setUpgrading(true);
-      await upgradeSubscription();
+      const res = await axios.put("/api/subscription/upgrade");
+      setSubscription({
+        ...subscription,
+        subscriptionStatus: res.data.subscriptionStatus,
+      });
       setUpgrading(false);
-      // Redirect to contacts after successful upgrade
-      navigate("/");
+
+      // Use history.push instead of navigate
+      history.push("/");
     } catch (err) {
+      setError("Failed to upgrade subscription");
       setUpgrading(false);
     }
   };
+  */
 
   if (loading) return <Spinner />;
 
   return (
     <div className="card bg-light">
       <div className="card-header">
-        <h3 className="text-primary">Subscription Status</h3>
+        <h2 className="text-primary">Subscription Information</h2>
       </div>
       <div className="card-body">
-        <h4>
+        {error && <div className="alert alert-danger">{error}</div>}
+
+        <h3>
           Current Plan:{" "}
           <span
             className={
-              subscriptionStatus === "paid" ? "text-success" : "text-primary"
+              subscription?.subscriptionStatus === "paid"
+                ? "text-success"
+                : "text-primary"
             }
           >
-            {subscriptionStatus === "paid" ? "Premium" : "Free"}
+            {subscription?.subscriptionStatus === "paid" ? "Premium" : "Free"}
           </span>
-        </h4>
+        </h3>
 
-        <p>{message}</p>
+        <p className="my-2">{subscription?.message}</p>
 
-        {subscriptionStatus !== "paid" && (
+        {subscription?.subscriptionStatus !== "paid" && (
           <div className="my-3">
             <h4>Upgrade to Premium</h4>
-            <p>Unlimited contacts and more features!</p>
-            <button
-              className="btn btn-primary"
-              onClick={onUpgrade}
-              disabled={upgrading}
-            >
-              {upgrading ? "Processing..." : "Upgrade Now"}
-            </button>
+            <p>Get unlimited contacts with our premium plan!</p>
+            <p>
+              To upgrade, please contact us at:{" "}
+              <a href="mailto:subscriptions@snailmailkeeper.com">
+                subscriptions@snailmailkeeper.com
+              </a>
+            </p>
           </div>
         )}
-
-        {error && <p className="text-danger">{error}</p>}
       </div>
     </div>
   );

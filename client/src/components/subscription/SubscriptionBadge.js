@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SubscriptionContext from "../../context/subscription/SubscriptionContext";
+import SubscriptionContext from "../../context/subscription/subscriptionContext";
 
 const SubscriptionBadge = () => {
   const subscriptionContext = useContext(SubscriptionContext);
@@ -15,7 +15,7 @@ const SubscriptionBadge = () => {
     <Link to="/subscription" className="nav-link">
       <span
         className={`badge ${
-          subscriptionStatus === "paid" ? "bg-success" : "bg-primary"
+          subscriptionStatus === "paid" ? "bg-success" : "bg-free"
         }`}
       >
         {subscriptionStatus === "paid" ? "Premium" : "Free"}
