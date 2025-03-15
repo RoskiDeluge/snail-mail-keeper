@@ -5,6 +5,7 @@ import Dashboard from "./components/pages/Dashboard";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 import Register from "./components/auth/Register";
+import Subscription from "./components/pages/Subscription"; // Add this
 import Login from "./components/auth/Login";
 import Alerts from "./components/layout/Alerts";
 import PrivateRoute from "./components/routing/PrivateRoute";
@@ -12,6 +13,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import ContactState from "./context/contact/ContactState";
 import AuthState from "./context/auth/AuthState";
 import AlertState from "./context/alert/AlertState";
+import SubscriptionState from "./context/subscription/SubscriptionState"; // Add this
 import "./App.css";
 
 const App = () => {
@@ -19,21 +21,32 @@ const App = () => {
     <AuthState>
       <ContactState>
         <AlertState>
-          <Router>
-            <Fragment>
-              <Navbar />
-              <div className="container">
-                <Alerts />
-                <Switch>
-                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/login" component={Login} />
-                  <Route exact path="/about" component={About} />
-                  <Route exact path="/register" component={Register} />
-                </Switch>
-              </div>
-            </Fragment>
-          </Router>
+          <SubscriptionState>
+            <Router>
+              <Fragment>
+                <Navbar />
+                <div className="container">
+                  <Alerts />
+                  <Switch>
+                    <PrivateRoute
+                      exact
+                      path="/dashboard"
+                      component={Dashboard}
+                    />
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/about" component={About} />
+                    <Route exact path="/register" component={Register} />
+                    <Route
+                      exact
+                      path="/subscription"
+                      element={<PrivateRoute component={Subscription} />}
+                    />
+                  </Switch>
+                </div>
+              </Fragment>
+            </Router>
+          </SubscriptionState>
         </AlertState>
       </ContactState>
     </AuthState>

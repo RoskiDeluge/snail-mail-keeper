@@ -1,10 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import ContactContext from "../../context/contact/contactContext";
+import ContactLimitAlert from "../subscription/ContactLimit";
 
 const ContactForm = () => {
   const contactContext = useContext(ContactContext);
 
   const { addContact, updateContact, clearCurrent, current } = contactContext;
+
+  // Add state for showing limit alert
+  const [showLimitAlert, setShowLimitAlert] = useState(false);
 
   useEffect(() => {
     if (current !== null) {
@@ -35,18 +39,28 @@ const ContactForm = () => {
   const onChange = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (current === null) {
-      addContact(contact);
+      try {
+        await addContact(contact);
+        clearAll();
+      } catch (err) {
+        // Check if error is due to contact limit
+        if (err.response && err.response.status === 403) {
+          setShowLimitAlert(true);
+        }
+      }
     } else {
       updateContact(contact);
+      clearAll();
     }
-    clearAll();
   };
 
   const clearAll = () => {
     clearCurrent();
+    // Reset the limit alert when clearing the form
+    setShowLimitAlert(false);
   };
 
   return (
@@ -120,6 +134,7 @@ const ContactForm = () => {
           </button>
         </div>
       )}
+      {showLimitAlert && <ContactLimitAlert />}
     </form>
   );
 };
