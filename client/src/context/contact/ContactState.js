@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import ContactContext from "./ContactContext";
+import ContactContextOne from "./ContactContextOne";
 import ContactReducer from "./ContactReducer";
 import {
   GET_CONTACTS,
@@ -135,7 +135,7 @@ const ContactState = (props) => {
   };
 
   return (
-    <ContactContext.Provider
+    <ContactContextOne.Provider
       value={{
         contacts: state.contacts,
         current: state.current,
@@ -153,7 +153,7 @@ const ContactState = (props) => {
       }}
     >
       {props.children}
-    </ContactContext.Provider>
+    </ContactContextOne.Provider>
   );
 };
 

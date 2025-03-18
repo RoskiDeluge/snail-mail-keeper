@@ -2,7 +2,7 @@ import React, { Fragment, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../context/auth/authContext";
-import ContactContext from "../../context/contact/ContactContext";
+import ContactContextOne from "../../context/contact/ContactContextOne";
 import SubscriptionBadge from "../subscription/SubscriptionBadge";
 
 const Navbar = ({ title, icon }) => {
@@ -10,7 +10,7 @@ const Navbar = ({ title, icon }) => {
   const contactContext = useContext(ContactContext);
 
   const { isAuthenticated, logout, user, loadUser } = authContext;
-  const { clearContacts } = contactContext;
+  const { clearContacts } = ContactContextOne;
 
   const history = useHistory();
 
