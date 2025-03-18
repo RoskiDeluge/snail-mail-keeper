@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const subscriptionContext = createContext();
+const SubscriptionContext = createContext();
 
-export default subscriptionContext;
+export default SubscriptionContext;

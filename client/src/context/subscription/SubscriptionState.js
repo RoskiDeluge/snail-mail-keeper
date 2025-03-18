@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import SubscriptionContext from "./subscriptionContext";
-import subscriptionReducer from "./subscriptionReducer";
+import SubscriptionContext from "./SubscriptionContext";
+import subscriptionReducer from "./SubscriptionReducer";
 import {
   GET_SUBSCRIPTION,
   UPGRADE_SUBSCRIPTION,

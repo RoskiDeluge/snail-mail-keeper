@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import ContactContext from "../../context/contact/contactContext";
+import ContactContext from "../../context/contact/ContactContext";
 import ContactLimitAlert from "../subscription/ContactLimit";
 
 const ContactForm = () => {

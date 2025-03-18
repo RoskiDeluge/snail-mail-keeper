@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
-import ContactContext from "../../context/contact/contactContext";
+import ContactContext from "../../context/contact/ContactContext";
 
 const ContactItem = ({ contact, props }) => {
   const contactContext = useContext(ContactContext);
