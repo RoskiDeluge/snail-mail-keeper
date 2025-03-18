@@ -24,16 +24,8 @@ const Navbar = ({ title, icon }) => {
     clearContacts();
   };
 
-  const onAdd = () => {
-    clearContacts();
-    history.push("/addcontact");
-  };
-
   const authLinks = (
     <Fragment>
-      <div className="btn btn-danger">
-        <a onClick={onAdd}>Add Contact</a>
-      </div>
       <li>Hello {user && user.name}</li>
       <li>
         <SubscriptionBadge />
