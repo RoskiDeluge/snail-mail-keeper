@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import axios from "axios";
 import ContactContextOne from "./ContactContextOne";
-import ContactReducer from "./ContactReducer";
+import ContactReducerOne from "./ContactReducerOne";
 import {
   GET_CONTACTS,
   ADD_CONTACT,
@@ -23,7 +23,7 @@ const ContactState = (props) => {
     error: null,
   };
 
-  const [state, dispatch] = useReducer(ContactReducer, initialState);
+  const [state, dispatch] = useReducer(ContactReducerOne, initialState);
 
   // Get Contacts
   const getContacts = async () => {
