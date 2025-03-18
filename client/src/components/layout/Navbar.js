@@ -7,10 +7,10 @@ import SubscriptionBadge from "../subscription/SubscriptionBadge";
 
 const Navbar = ({ title, icon }) => {
   const authContext = useContext(AuthContext);
-  const contactContext = useContext(ContactContext);
+  const contactContext = useContext(ContactContextOne);
 
   const { isAuthenticated, logout, user, loadUser } = authContext;
-  const { clearContacts } = ContactContextOne;
+  const { clearContacts } = contactContext;
 
   const history = useHistory();
 
