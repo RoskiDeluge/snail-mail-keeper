@@ -12,7 +12,7 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import ContactState from "./context/contact/ContactState";
 import AuthState from "./context/auth/AuthState";
 import AlertState from "./context/alert/AlertState";
-import SubscriptionState from "./context/subscription/subscriptionState";
+import SubscriptionState from "./context/subscription/SubscriptionState";
 import "./App.css";
 
 const App = () => {
