@@ -20,6 +20,11 @@ const ContactItem = ({ contact, props }) => {
     }
   };
 
+  const onEdit = () => {
+    setCurrent(contact);
+    history.push("/addcontact");
+  };
+
   return (
     <div className="card bg-light">
       <h3 className="text-primary text-left">
@@ -42,10 +47,7 @@ const ContactItem = ({ contact, props }) => {
         </p>
       </ul>
       <p>
-        <button
-          className="btn btn-dark btn-sm"
-          onClick={() => setCurrent(contact)}
-        >
+        <button className="btn btn-dark btn-sm" onClick={onEdit}>
           Edit
         </button>
         <button className="btn btn-danger btn-sm" onClick={onDelete}>
