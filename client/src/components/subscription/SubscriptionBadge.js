@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import SubscriptionContext from "../../context/subscription/SubscriptionContext";
+import SubscriptionContext from "../../context/subscription/SubscriptionContextOne";
 
 const SubscriptionBadge = () => {
   const subscriptionContext = useContext(SubscriptionContext);

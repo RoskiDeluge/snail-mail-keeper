@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import SubscriptionContext from "./SubscriptionContext";
-import SubscriptionReducer from "./SubscriptionReducer";
+import SubscriptionContextOne from "./SubscriptionContextOne";
+import SubscriptionReducerOne from "./SubscriptionReducerOne";
 import {
   GET_SUBSCRIPTION,
   UPGRADE_SUBSCRIPTION,
@@ -16,7 +16,7 @@ const SubscriptionState = (props) => {
     error: null,
   };
 
-  const [state, dispatch] = useReducer(SubscriptionReducer, initialState);
+  const [state, dispatch] = useReducer(SubscriptionReducerOne, initialState);
 
   // Get subscription info
   const getSubscription = async () => {
@@ -56,7 +56,7 @@ const SubscriptionState = (props) => {
   };
 
   return (
-    <SubscriptionContext.Provider
+    <SubscriptionContextOne.Provider
       value={{
         subscriptionStatus: state.subscriptionStatus,
         message: state.message,
@@ -67,7 +67,7 @@ const SubscriptionState = (props) => {
       }}
     >
       {props.children}
-    </SubscriptionContext.Provider>
+    </SubscriptionContextOne.Provider>
   );
 };
 
