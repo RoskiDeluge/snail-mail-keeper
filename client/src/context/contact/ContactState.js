@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import axios from "axios";
-import contactContext from "./ContactContext";
-import contactReducer from "./ContactReducer";
+import ContactContext from "./ContactContext";
+import ContactReducer from "./ContactReducer";
 import {
   GET_CONTACTS,
   ADD_CONTACT,
@@ -23,7 +23,7 @@ const ContactState = (props) => {
     error: null,
   };
 
-  const [state, dispatch] = useReducer(contactReducer, initialState);
+  const [state, dispatch] = useReducer(ContactReducer, initialState);
 
   // Get Contacts
   const getContacts = async () => {
@@ -135,7 +135,7 @@ const ContactState = (props) => {
   };
 
   return (
-    <contactContext.Provider
+    <ContactContext.Provider
       value={{
         contacts: state.contacts,
         current: state.current,
@@ -153,7 +153,7 @@ const ContactState = (props) => {
       }}
     >
       {props.children}
-    </contactContext.Provider>
+    </ContactContext.Provider>
   );
 };
 

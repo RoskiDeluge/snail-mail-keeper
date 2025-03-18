@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import axios from "axios";
 import SubscriptionContext from "./SubscriptionContext";
-import subscriptionReducer from "./SubscriptionReducer";
+import SubscriptionReducer from "./SubscriptionReducer";
 import {
   GET_SUBSCRIPTION,
   UPGRADE_SUBSCRIPTION,
@@ -16,7 +16,7 @@ const SubscriptionState = (props) => {
     error: null,
   };
 
-  const [state, dispatch] = useReducer(subscriptionReducer, initialState);
+  const [state, dispatch] = useReducer(SubscriptionReducer, initialState);
 
   // Get subscription info
   const getSubscription = async () => {
