@@ -22,7 +22,7 @@ const ContactItem = ({ contact, props }) => {
 
   const onEdit = () => {
     setCurrent(contact);
-    history.push("/addcontact");
+    history.push("/dashboard");
   };
 
   return (

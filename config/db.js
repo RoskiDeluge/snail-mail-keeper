@@ -1,6 +1,8 @@
-const mongoose = require('mongoose');
-const config = require('config');
-const db = config.get('mongoURI');
+const mongoose = require("mongoose");
+const config = require("config");
+
+// Allow overriding via env for local/dev environments
+const db = process.env.MONGO_URI || config.get("mongoURI");
 
 const connectDB = async () => {
   try {
